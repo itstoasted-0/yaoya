@@ -38,9 +38,9 @@ class Greengrocer
   end
 
   # 合計金額を計算
-  def calculate_charges(chosen_product, quantity_of_product)
-    total_price = chosen_product.price * quantity_of_product
-    if quantity_of_product >= 5
+  def calculate_charges(user)
+    total_price = user.chosen_product.price * user.quantity_of_product
+    if user.quantity_of_product >= 5
       puts "5個以上なので10％割引となります！"
       total_price *= 0.9
     end
@@ -109,4 +109,4 @@ greengrocer1.ask_quantity(user.chosen_product)
 # 個数を決定
 user.decide_quantity
 
-greengrocer1.calculate_charges(user.chosen_product, user.quantity_of_product)
+greengrocer1.calculate_charges(user)
