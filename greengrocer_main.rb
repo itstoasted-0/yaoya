@@ -7,7 +7,7 @@ class Product
     @name = product_params[:name]
     @price = product_params[:price]
   end
-  
+
 end
 
 class Greengrocer
@@ -32,17 +32,32 @@ class Greengrocer
     end
   end
 
+  def ask_quantity(chosen_product)
+    puts "#{chosen_product.name}ですね。何個買いますか？"
+
+  end
+
 end
 
 class User
+  attr_reader :chosen_product
 
   def choose_product(products)
     while true
       print "商品の番号を選択 > "
       select_product_id = gets.to_i
-      @choose_product = products.find{|product| product.id == select_product_id}
-      break if !@choose_product.nil?
+      @chosen_product = products.find{|product| product.id == select_product_id}
+      break if !@chosen_product.nil?
       puts "#{products.first.id}から#{products.last.id}番号から選んで下さい。"
+    end
+  end
+
+  def decide_quantity
+    while true
+      print "商品の個数を入力 > "
+      @quantity_of_product = gets.to_i
+      break if @quantity_of_product >= 1
+      puts "1個以上選んで下さい。"
     end
   end
 
@@ -76,3 +91,9 @@ greengrocer1.disp_products
 
 # (2)商品を選択するメソッドを呼び出し（実引数を設定）
 user.choose_product(greengrocer1.products)
+
+# (3)引数を設定し、「個数を質問する」メソッドを呼び出す
+greengrocer1.ask_quantity(user.chosen_product)
+
+# 個数を決定
+user.decide_quantity
