@@ -37,10 +37,21 @@ class Greengrocer
 
   end
 
+  # 合計金額を計算
+  def calculate_charges(chosen_product, quantity_of_product)
+    total_price = chosen_product.price * quantity_of_product
+    if quantity_of_product >= 5
+      puts "5個以上なので10％割引となります！"
+      total_price *= 0.9
+    end
+    puts "合計金額は#{total_price.floor}円です。"
+    puts "お買い上げありがとうございました！"
+  end
+
 end
 
 class User
-  attr_reader :chosen_product
+  attr_reader :chosen_product, :quantity_of_product
 
   def choose_product(products)
     while true
@@ -97,3 +108,5 @@ greengrocer1.ask_quantity(user.chosen_product)
 
 # 個数を決定
 user.decide_quantity
+
+greengrocer1.calculate_charges(user.chosen_product, user.quantity_of_product)
