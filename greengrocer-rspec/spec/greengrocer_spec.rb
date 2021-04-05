@@ -19,7 +19,7 @@ RSpec.describe Greengrocer do
         expect(products[0].name).to eq "トマト"
       end
 
-      it "@productsの最初の要素の金額が，product_paramsの最初の要素の金額と等しいこと" do
+      it "@productsの最初の要素の金額が，product_paramsの最初の要素の金額と等しいこと" dod
         expect(products[0].price).to eq "100"
       end
     end
